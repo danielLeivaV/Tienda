@@ -38,6 +38,30 @@
 
 
         </div>
+      <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <img 
+                title="Titulo del producto"
+                alt="titulo"
+                class="card-img-top" 
+                src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE55U7F">
+                <div class="card-body">
+                    <span>Titulo del producto</span>
+                    <h5 class="card-title">300.000 Gs</h5>
+                    <p class="card-text">Descripcion</p>
+                    <button class="btn btn-primary" 
+                    name= "btnAction" 
+                    value= "Agregar"
+                    type="submit">
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+        
 
     </div>
         
