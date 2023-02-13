@@ -44,6 +44,12 @@ include'global/conexion.php';
 
         </div>
       <div class="row">
+        <?php
+        $sentencia=$pdo->prepare("SELECT * FROM `tblproductos`");
+        $sentencia->execute();
+        $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+        print_r($listaProductos);
+        ?>
         <div class="col-3">
             <div class="card">
                 <img 
