@@ -50,21 +50,26 @@ include 'global/conexion.php';
         $sentencia=$pdo->prepare("SELECT * FROM tblproductos ");
         $sentencia->execute();
         $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-        print_r($listaProductos);
+        //print_r($listaProductos);
         ?>
 
-
-
-        <div class="col-3">
+        <?php foreach($listaProductos as $producto){ ?>
+            <div class="col-3">
             <div class="card">
                 <img 
-                title="Titulo del producto"
-                alt="titulo"
+                title="<?php echo $producto['Nombre'];  ?>"
+                alt="<?php echo $producto['Nombre'];  ?>"
                 class="card-img-top" 
-                src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE55U7F">
+                src="<?php echo $producto['Imagen'];?>"
+                data-bs-toggle="popover"
+                data-bs-trigger="hover"
+                data-bs-content="<?php echo $producto['Descripcion'];?>"
+                
+                
+                >
                 <div class="card-body">
-                    <span>Titulo del producto</span>
-                    <h5 class="card-title">300.000 Gs</h5>
+                    <span><?php echo $producto['Nombre'];  ?></span>
+                    <h5 class="card-title">U$s <?php echo $producto['Precio'];  ?></h5>
                     <p class="card-text">Descripcion</p>
                     <button class="btn btn-primary" 
                     name= "btnAction" 
@@ -76,6 +81,11 @@ include 'global/conexion.php';
             </div>
             
         </div>
+
+
+        <?php } ?>
+        
+       
       </div>
         
 
@@ -83,5 +93,10 @@ include 'global/conexion.php';
         
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>    
+
+        <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
 </body>
 </html>
