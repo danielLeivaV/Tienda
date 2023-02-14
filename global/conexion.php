@@ -1,5 +1,5 @@
 <?php
-$servidor="mysql:dbname".BD.";host=".SERVIDOR;
+$servidor="mysql:dbname=" .BD.";host=".SERVIDOR;
 
 try{
 

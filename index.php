@@ -1,6 +1,6 @@
 <?php
 include 'global/config.php';
-include'global/conexion.php';
+include 'global/conexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -43,13 +43,18 @@ include'global/conexion.php';
 
 
         </div>
+        
       <div class="row">
-        <?php
-        $sentencia=$pdo->prepare("SELECT * FROM `tblproductos`");
+       
+      <?php
+        $sentencia=$pdo->prepare("SELECT * FROM tblproductos ");
         $sentencia->execute();
         $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
         print_r($listaProductos);
         ?>
+
+
+
         <div class="col-3">
             <div class="card">
                 <img 
