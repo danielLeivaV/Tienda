@@ -1,6 +1,7 @@
 <?php
 include 'global/config.php';
 include 'global/conexion.php';
+include 'carrito.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@ include 'global/conexion.php';
     <div class="container">
         <br />
         <div class="alert alert-success">
-            Pantalla
+            <?php echo $mensaje; ?>
             <a href="#" class="badge badge-success">Ver carrito</a>
 
 
@@ -65,13 +66,11 @@ include 'global/conexion.php';
                             <p class="card-text">Descripcion</p>
 
                             <form action="" method="post">
-                                <input type="text" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'], COD, KEY) ; ?>">
-                                <input type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['Nombre'], COD, KEY) ;  ?>">
-                                <input type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['Precio'], COD, KEY) ;  ?>">
-                                <input type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ; ?>">
-                                <button class="btn btn-primary" 
-                                name="btnAction" 
-                                value="Agregar" type="submit">
+                                <input type="text" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'], COD, KEY); ?>">
+                                <input type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['Nombre'], COD, KEY);  ?>">
+                                <input type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['Precio'], COD, KEY);  ?>">
+                                <input type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY); ?>">
+                                <button class="btn btn-primary" name="btnAction" value="Agregar" type="submit">
                                     Agregar al carrito
                                 </button>
 
