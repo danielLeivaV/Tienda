@@ -5,6 +5,7 @@ include 'global/conexion.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +14,7 @@ include 'global/conexion.php';
     <title>Tienda</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="index.php">Logo de la empresa</a>
@@ -33,70 +35,70 @@ include 'global/conexion.php';
             </ul>
         </div>
     </nav>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <div class="container">
-         <br/>
-         <div class="alert alert-success">
+        <br />
+        <div class="alert alert-success">
             Pantalla
-            <a href= "#" class= "badge badge-success">Ver carrito</a>
+            <a href="#" class="badge badge-success">Ver carrito</a>
 
 
         </div>
-        
-      <div class="row">
-       
-      <?php
-        $sentencia=$pdo->prepare("SELECT * FROM tblproductos ");
-        $sentencia->execute();
-        $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
-        //print_r($listaProductos);
-        ?>
 
-        <?php foreach($listaProductos as $producto){ ?>
-            <div class="col-3">
-            <div class="card">
-                <img 
-                title="<?php echo $producto['Nombre'];  ?>"
-                alt="<?php echo $producto['Nombre'];  ?>"
-                class="card-img-top" 
-                src="<?php echo $producto['Imagen'];?>"
-                data-bs-toggle="popover"
-                data-bs-trigger="hover"
-                data-bs-content="<?php echo $producto['Descripcion'];?>"
-                
-                
-                >
-                <div class="card-body">
-                    <span><?php echo $producto['Nombre'];  ?></span>
-                    <h5 class="card-title">U$s <?php echo $producto['Precio'];  ?></h5>
-                    <p class="card-text">Descripcion</p>
-                    <button class="btn btn-primary" 
-                    name= "btnAction" 
-                    value= "Agregar"
-                    type="submit">
-                        Agregar al carrito
-                    </button>
+        <div class="row">
+
+            <?php
+            $sentencia = $pdo->prepare("SELECT * FROM tblproductos ");
+            $sentencia->execute();
+            $listaProductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            //print_r($listaProductos);
+            ?>
+
+            <?php foreach ($listaProductos as $producto) { ?>
+                <div class="col-3">
+                    <div class="card">
+                        <img title="<?php echo $producto['Nombre'];  ?>" alt="<?php echo $producto['Nombre'];  ?>" class="card-img-top" src="<?php echo $producto['Imagen']; ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-content="<?php echo $producto['Descripcion']; ?>">
+                        <div class="card-body">
+                            <span><?php echo $producto['Nombre'];  ?></span>
+                            <h5 class="card-title">U$s <?php echo $producto['Precio'];  ?></h5>
+                            <p class="card-text">Descripcion</p>
+
+                            <form action="" method="post">
+                                <input type="text" name="id" id="id" value="<?php echo openssl_encrypt($producto['ID'], COD, KEY) ; ?>">
+                                <input type="text" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['Nombre'], COD, KEY) ;  ?>">
+                                <input type="text" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['Precio'], COD, KEY) ;  ?>">
+                                <input type="text" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ; ?>">
+                                <button class="btn btn-primary" 
+                                name="btnAction" 
+                                value="Agregar" type="submit">
+                                    Agregar al carrito
+                                </button>
+
+                            </form>
+
+
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            
+
+
+            <?php } ?>
+
+
         </div>
 
-
-        <?php } ?>
-        
-       
-      </div>
-        
 
     </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>    
 
-        <script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+    <script>
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-</script>
+    </script>
 </body>
+
 </html>
