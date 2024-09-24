@@ -1,4 +1,5 @@
 <?php
+//desde interno
 include 'global/config.php';
 include 'global/conexion.php';
 include 'carrito.php';
