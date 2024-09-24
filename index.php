@@ -1,6 +1,4 @@
 <?php
-//desde interno
-//desde github
 include 'global/config.php';
 include 'global/conexion.php';
 include 'carrito.php';
